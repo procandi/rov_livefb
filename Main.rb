@@ -5,6 +5,7 @@
 require 'sinatra/base'
 require 'rest-graph'
 require 'rest-client'
+require 'koala'
 
 
 class Main < Sinatra::Base  
