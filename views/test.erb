@@ -3,9 +3,7 @@
   <head>
     <title>Facebook Login JavaScript Example</title>
     <meta charset="UTF-8">
-  </head>
 
-  <body>
     <script>
       window.fbAsyncInit = function() {
         FB.init({
@@ -23,14 +21,25 @@
          js.src = "//connect.facebook.net/en_US/sdk.js";
          fjs.parentNode.insertBefore(js, fjs);
        }(document, 'script', 'facebook-jssdk'));
-    </script>
 
+
+      // Only works after `FB.init` is called
+      function myFacebookLogin() {
+        FB.login(function(){}, {scope: 'publish_actions'});
+      }
+    </script>
+  </head>
+
+  <body>
     <div
       class="fb-like"
       data-share="true"
       data-width="450"
       data-show-faces="true">
     </div>
+
+
+    <button onclick="myFacebookLogin()">Login with Facebook</button>
   </body>
 
 </html>
