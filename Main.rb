@@ -13,22 +13,25 @@ class Main < Sinatra::Base
   get '/' do   
     erb :Main
   end
-  
+
+  #test進入點
+  get '/test' do   
+    erb :test
+  end
   
   #開始直播
   post '/facebook_live' do
   	#自動取得FB權仗記錄
-  	app_id='1310588732364045'
-	app_secret='9cd6313c90193d3c15b3c1996b1227c8'
+  	app_id='1922129071404161'
+	app_secret='5d2808f71a0701e2807315cfb392bbe5'
 	callback_url='https://rov-fblive.herokuapp.com/'
 	@oauth = Koala::Facebook::OAuth.new(app_id, app_secret, callback_url)
 	access_token=@oauth.get_app_access_token
 
-	a=`ls ~/`
 
 
 	#取得FB權仗及OS的記錄
-	access_token=params[:access_token]
+	#access_token=params[:access_token]
     OS=params[:OS]
 
 
@@ -53,7 +56,6 @@ class Main < Sinatra::Base
 				#建立直播
 				stream_url=live_videos['data'][0]['stream_url']
 				if stream_url!=nil
-					b='ok'
 					if OS=='OS X'
 						#result=`ffmpeg -f avfoundation -i "Capture screen 0:Built-in Input" -f flv "#{stream_url}"`
 					elsif OS=='UNIX' || OS=='LINUX'
@@ -67,7 +69,7 @@ class Main < Sinatra::Base
 
 	#redirect '/'
 
-	"#{a} #{b} #{app_id} #{app_secret} #{access_token} begin streaming."
+	"#{app_id} #{app_secret} #{access_token} begin streaming."
   end
   
   
