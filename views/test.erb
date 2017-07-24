@@ -26,20 +26,22 @@
       // Only works after `FB.init` is called
       function myFacebookLogin() {
         FB.login(function(){
+          var uid;
 
           // Note: The call will only work if you accept the permission request
           //FB.api('/me/feed', 'post', {message: 'Hello, world!'});
 
 
           //get user name.
-          FB.api('/me', {fields: 'last_name'}, function(response) {
-            alert(response.last_name);
+          FB.api('/me', {fields: 'id'}, function(response) {
+            alert(response.id);
+            uid=repsponse.id;
           });
 
 
+          alert('aa');
           //facebook live.
-          FB.api(
-              "/me/live_videos",
+          FB.api("/"+uid+"/live_videos",
               function (response) {
                 if (response && !response.error) {
                   /* handle the result */
@@ -51,8 +53,8 @@
           );
 
 
-          FB.api(
-              "/me/live_videos", "post",
+          alert('b');
+          FB.api("/me/live_videos", "post",
               function (response) {
                 if (response && !response.error) {
                   /* handle the result */
