@@ -1,10 +1,8 @@
 ﻿<!DOCTYPE html>
 <html>
   <head>
-    <title>ROV Facebook Live</title>
+    <title>Facebook Login JavaScript Example</title>
     <meta charset="UTF-8">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
 
     <script>
       window.fbAsyncInit = function() {
@@ -49,10 +47,8 @@
                   /* handle the result */
                   sid=response.id;
                   stream_url=response.stream_url;
-                  alert(stream_url);
-                  $("#result-div").append('<a href="http://localhost:9292/facebook_live?stream_url='+stream_url+'">點此開始直播</a>');
                 }else{
-                  alert('error on get facebook live stream.');
+                  alert('error on get facebook live stream_url.');
                 }
               }
           );
@@ -65,17 +61,15 @@
   </head>
 
   <body>
-  	<!--
     <div
       class="fb-like"
       data-share="true"
       data-width="450"
       data-show-faces="true">
     </div>
-	-->
 
-    <button onclick="myFacebookLogin()">取得FB直播權限開</button>
-    <div id='result-div'></div>
+
+    <button onclick="myFacebookLogin()">Login with Facebook, And get live url.</button>
   </body>
 
 </html>
