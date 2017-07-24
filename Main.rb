@@ -20,19 +20,20 @@ class Main < Sinatra::Base
 
 
   post '/begin_live' do
-  	OS=params[:OSName]
+  	OS=params[:OS]
   	stream_url=params[:stream_url]
+  	OS='Linux' if OS=='' || OS==nil
   	p OS
   	p stream_url
 
 	if OS=='OS X'
 		result=`ffmpeg -f avfoundation -i "Capture screen 0:Built-in Input" -f flv "#{stream_url}"`
-	elsif OS=='UNIX' || OS=='LINUX'
+	elsif OS=='UNIX' || OS=='Linux'
 		result=`ffmpeg -f x11grab -thread_queue_size 100 -r 10 -video_size 1024x768 -i :0 -f alsa -thread_queue_size 500 -ar 44100 -ac 1 -i default -f flv -c:v h264 -c:a aac "#{stream_url}"`
 	end
 
 
-	redirect '/begin_live'
+	erb :ok
   end
   
   
