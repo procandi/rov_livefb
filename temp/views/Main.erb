@@ -1,0 +1,125 @@
+﻿<html>
+	<head>
+		<meta http-equiv="Content-Type" width="1280" height="1024" border="0" content="text/html; charset=utf-8"> 
+		<style type="text/css"> 
+			h1 {color:white; background-color:blue;} 
+			h3 {color:red;}
+			b {color:white;} 
+			p {color:white;} 
+		</style> 
+
+		<script>
+
+			//install facebook api.
+			window.fbAsyncInit = function() {
+		        FB.init({
+		          appId      : '1922129071404161',
+		          xfbml      : true,
+		          version    : 'v2.10'
+		        });
+		        FB.AppEvents.logPageView();
+		      };
+
+		      (function(d, s, id){
+		         var js, fjs = d.getElementsByTagName(s)[0];
+		         if (d.getElementById(id)) {return;}
+		         js = d.createElement(s); js.id = id;
+		         js.src = "//connect.facebook.net/en_US/sdk.js";
+		         fjs.parentNode.insertBefore(js, fjs);
+		       }(document, 'script', 'facebook-jssdk'));
+
+
+
+		      // Only works after `FB.init` is called
+		      function myFacebookLive() {
+		        FB.login(function(){
+		          var uid;
+		          var sid;
+		          var stream_url;
+
+
+		          // Note: The call will only work if you accept the permission request
+		          //FB.api('/me/feed', 'post', {message: 'Hello, world!'});
+
+
+		          //get user name.
+		          FB.api('/me', {fields: 'id'}, function(response) {
+		            uid=repsponse.id;
+		          });
+
+
+		          //facebook live.
+		          FB.api("/me/live_videos", "get",
+		              function (response) {
+		                if (response && !response.error) {
+		                  /* handle the result */
+		                  sid=response.id;
+		                  stream_url=response.stream_url;
+		                }else{
+		                  alert('error on get facebook live stream_url.');
+		                }
+		              }
+		          );
+
+		          
+
+
+		        }, {scope: 'publish_actions'});
+		      }
+
+
+
+
+
+		    //get OS.
+			var OSName="Unknown OS";
+			if (navigator.appVersion.indexOf("Win")!=-1) OSName="Windows";
+			if (navigator.appVersion.indexOf("Mac")!=-1) OSName="OSX";
+			if (navigator.appVersion.indexOf("X11")!=-1) OSName="UNIX";
+			if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux";
+		</script>
+	</head>
+
+	<body background='../professional-banner.jpg'>
+
+		<div>
+			<h1>ROV直播</h1>
+			<!--<h3><a href='#' onClick="window.open('https://developers.facebook.com/tools/explorer/1310588732364045?method=GET&path=me%3Ffields%3Did%2Cname&version=v2.10', '_blank')" >取得直播權限</a></h3>-->
+			
+			 
+			<form action="#" accept-charset="utf-8">
+				<b>
+				  	<script>
+				  		document.write('您的OS應該是: '+OSName);				
+				  	</script>
+			  	</b><br />
+
+				<b>
+					<select id="OS" name="OS">
+						<option value="Windows">Windows</option>
+						<option value="OSX">OSX</option>
+						<option value="UNIX">UNIX</option>
+						<option value="Linux" selected>Linux</option>
+					</select>
+				</b><br /><br />
+
+				<b>
+					<!--
+					<div
+				      class="fb-like"
+				      data-share="true"
+				      data-width="450"
+				      data-show-faces="true">
+				    </div>
+					-->
+
+					<button onclick="myFacebookLive()">開始直播</button>
+				</b><br /><br />
+			</form>
+		</div>
+		<div id="footer">
+			<p><b>ROV-MAKER 2017.</b></p>
+		</div>
+
+	</body>
+</html>

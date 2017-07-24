@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" width="1280" height="1024" border="0" content="text/html; charset=utf-8"> 
+    <style type="text/css"> 
+      h1 {color:white; background-color:blue;} 
+      h3 {color:red;}
+      b {color:white;} 
+      p {color:white;} 
+    </style> 
+
+    <script>
+      var OSName="Unknown OS";
+      if (navigator.appVersion.indexOf("Win")!=-1) OSName="Windows";
+      if (navigator.appVersion.indexOf("Mac")!=-1) OSName="OS X";
+      if (navigator.appVersion.indexOf("X11")!=-1) OSName="UNIX";
+      if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux";
+    </script>
+  </head>
+
+  <body background='../professional-banner.jpg'>
+
+    <div>
+      <h1>ROV直播</h1>
+      <h3><a href='#' onClick="window.open('https://developers.facebook.com/tools/explorer/1310588732364045?method=GET&path=me%3Ffields%3Did%2Cname&version=v2.9', '_blank')" >取得直播權限</a></h3>
+      
+       
+      <form action="/facebook_live" method="post" accept-charset="utf-8">
+        <b><input id='access_token' name='access_token' type='text' value='' placeholder='請輸入FB權仗'></b><br /><br />
+
+        <b>
+            <script>
+              document.write('您的OS應該是: '+OSName);
+            </script>
+          </b><br />
+
+        <b>
+          <select id="OS" name="OS">
+            <option value="Windows">Windows</option>
+            <option value="OS X" selected="selected">OS X</option>
+            <option value="UNIX">UNIX</option>
+            <option value="Linux">Linux</option>
+          </select>
+        </b><br /><br />
+
+        <b><input type="submit" value="開始直播"></b><br /><br />
+      </form>
+    </div>
+    <div id="footer">
+      <p><b>ROV-MAKER 2017.</b></p>
+    </div>
+
+  </body>
+</html>
