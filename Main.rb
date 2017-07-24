@@ -28,8 +28,10 @@ class Main < Sinatra::Base
   	p stream_url
 
 	if OS=='OS X'
+		p "ffmpeg -f avfoundation -i 'Capture screen 0:Built-in Input' -f flv '#{stream_url}'"
 		result=`ffmpeg -f avfoundation -i "Capture screen 0:Built-in Input" -f flv "#{stream_url}"`
 	elsif OS=='UNIX' || OS=='Linux'
+		p "ffmpeg -f x11grab -thread_queue_size 100 -r 10 -video_size 1024x768 -i :0 -f alsa -thread_queue_size 500 -ar 44100 -ac 1 -i default -f flv -c:v h264 -c:a aac '#{stream_url}'"
 		result=`ffmpeg -f x11grab -thread_queue_size 100 -r 10 -video_size 1024x768 -i :0 -f alsa -thread_queue_size 500 -ar 44100 -ac 1 -i default -f flv -c:v h264 -c:a aac "#{stream_url}"`
 	end
 
