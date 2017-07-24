@@ -49,8 +49,8 @@
                   /* handle the result */
                   sid=response.id;
                   stream_url=response.stream_url;
-
-                  $("#result-div").append('<a href="http://localhost:9292/facebook_live?stream_url='+response.stream_url+'">點此開始直播</a>');
+                  alert(stream_url);
+                  $("#result-div").append('<a href="http://localhost:9292/facebook_live?stream_url='+stream_url+'">點此開始直播</a>');
                 }else{
                   alert('error on get facebook live stream.');
                 }
@@ -74,7 +74,7 @@
     </div>
 	-->
 
-    <button onclick="myFacebookLogin()">取得FB直播權限</button>
+    <button onclick="myFacebookLogin()">取得FB直播權限開</button>
     <div id='result-div'></div>
   </body>
 
