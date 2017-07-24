@@ -31,14 +31,14 @@
           //FB.api('/me/feed', 'post', {message: 'Hello, world!'});
 
           //facebook live.
-          FB.api('/me/live_videos', 'get'), function(response) {
+          FB.api('/me/live_videos', 'get', function(response) {
             if (!response || response.error) {
               alert('Error occured');
             } else {
               alert('Post ID: ' + response.id);
               alert('Stream URL: '+ response.stream_url);
             }
-          };
+          });
 
         }, {scope: 'publish_actions'});
       }
