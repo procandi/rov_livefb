@@ -15,7 +15,7 @@ class Main < Sinatra::Base
   #開始直播
   get '/facebook_live' do
   	p params[:stream_url]
-  	@stream_url=params[:stream_url].gsub('&','@')
+  	@stream_url=params[:stream_url]
 	erb :facebook_live
   end
 

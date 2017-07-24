@@ -57,8 +57,7 @@
                   stream_url=response.stream_url;
 
 
-                  stream_url=stream_url.replaceAll('&','@');
-                  alert(stream_url);
+                  stream_url=stream_url.replace(/&/g,'@');
                   //$("#result-div").append('<a href="http://localhost:9292/facebook_live?stream_url='+stream_url+'">點此開始直播</a>');
                   window.location = 'http://localhost:9292/facebook_live?stream_url='+stream_url;
                 }else{
