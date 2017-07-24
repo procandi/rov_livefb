@@ -27,6 +27,8 @@
       function myFacebookLogin() {
         FB.login(function(){
           var uid;
+          var sid;
+          var stream_url;
 
           // Note: The call will only work if you accept the permission request
           //FB.api('/me/feed', 'post', {message: 'Hello, world!'});
@@ -34,33 +36,50 @@
 
           //get user name.
           FB.api('/me', {fields: 'id'}, function(response) {
-            alert(response.id);
             uid=repsponse.id;
           });
 
 
-          alert('aa');
           //facebook live.
-          FB.api("/"+uid+"/live_videos",
+          FB.api("/me/live_videos",
               function (response) {
                 if (response && !response.error) {
                   /* handle the result */
-                  alert(reponse.id);
+                  alert(response.id);
+                  alert(response.stream_url);
+                  sid=response.id;
+                  stream_url=response.stream_url;
                 }else{
                   alert('error1');
                 }
               }
           );
 
+          FB.api("/me/live_videos", "post",
+              function (response) {
+                if (response && !response.error) {
+                  /* handle the result */
+                  alert(response.id);
+                  alert(response.stream_url);
+                  sid=response.id;
+                  stream_url=response.stream_url;
+                }else{
+                  alert('error2');
+                }
+              }
+          );
 
-          alert('bb');
+
           FB.api("/me/live_videos", "get",
               function (response) {
                 if (response && !response.error) {
                   /* handle the result */
-                  alert(reponse.id);
+                  alert(response.id);
+                  alert(response.stream_url);
+                  sid=response.id;
+                  stream_url=response.stream_url;
                 }else{
-                  alert('error2');
+                  alert('error3');
                 }
               }
           );
