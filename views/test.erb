@@ -47,20 +47,20 @@
                   /* handle the result */
                   alert(reponse.id);
                 }else{
-                  alert('error');
+                  alert('error1');
                 }
               }
           );
 
 
-          alert('b');
-          FB.api("/me/live_videos", "post",
+          alert('bb');
+          FB.api("/me/live_videos", "get",
               function (response) {
                 if (response && !response.error) {
                   /* handle the result */
                   alert(reponse.id);
                 }else{
-                  alert('error');
+                  alert('error2');
                 }
               }
           );
