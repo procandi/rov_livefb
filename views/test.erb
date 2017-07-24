@@ -38,13 +38,16 @@
 
 
           //facebook live.
-          FB.api('/me/live_videos', function(response) {
-            if (!response || response.error) {
-              alert('Error occured');
-            } else {
-              alert('Post ID: ' + response.id);
-            }
-          });
+          FB.api(
+              "/me/live_videos",
+              function (response) {
+                if (response && !response.error) {
+                  /* handle the result */
+                }else{
+                  alert(reponse.id)
+                }
+              }
+          );
 
         }, {scope: 'publish_actions'});
       }
