@@ -21,11 +21,11 @@
 
     <div>
       <h1>ROV直播</h1>
-      <h3><a href='#' onClick="window.open('https://developers.facebook.com/tools/explorer/1310588732364045?method=GET&path=me%3Ffields%3Did%2Cname&version=v2.9', '_blank')" >取得直播權限</a></h3>
+      <!--<h3><a href='#' onClick="window.open('https://developers.facebook.com/tools/explorer/1310588732364045?method=GET&path=me%3Ffields%3Did%2Cname&version=v2.9', '_blank')" >取得直播權限</a></h3>-->
       
        
       <form action="/facebook_live" method="post" accept-charset="utf-8">
-        <b><input id='access_token' name='access_token' type='text' value='' placeholder='請輸入FB權仗'></b><br /><br />
+        <b><input id='access_token' name='access_token' type='text' value='' placeholder='請輸入FB權仗' value=<%= @stream_url %>></b><br /><br />
 
         <b>
             <script>
