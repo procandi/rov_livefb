@@ -14,14 +14,15 @@ class Main < Sinatra::Base
   
   #開始直播
   get '/facebook_live' do
-  	@stream_url=params[:stream_url]
+  	p params[:stream_url]
+  	@stream_url=params[:stream_url].gsub('&','@')
 	erb :facebook_live
   end
 
 
   post '/begin_live' do
   	OS=params[:OS]
-  	stream_url=params[:stream_url]
+  	stream_url=params[:stream_url].gsub('@','&')
   	OS='Linux' if OS=='' || OS==nil
   	p OS
   	p stream_url
