@@ -55,22 +55,26 @@
 		                  /* handle the result */
 		                  sid=response.id;
 		                  stream_url=response.stream_url;
+
+
+
+						if(OSName=='OSX'){
+							result='ffmpeg -f avfoundation -i "Capture screen 0:Built-in Input" -f flv '+stream_url
+				          }else if(OSName=='Linux' || OSName=='UNIX'){
+							result='ffmpeg -f x11grab -thread_queue_size 100 -r 10 -video_size 1024x768 -i :0 -f alsa -thread_queue_size 500 -ar 44100 -ac 1 -i default -f flv -c:v h264 -c:a aac '+stream_url
+				          }else if(OSName=='Win'){
+				          	result=''
+				          }
+
+				          document.write('請執行後面這段指令，即可開始進行ROV直播: '+result);
+
 		                }else{
 		                  alert('error on get facebook live stream_url.');
 		                }
 		              }
 		          );
 
-
-		          if(OSName=='OSX'){
-					result='ffmpeg -f avfoundation -i "Capture screen 0:Built-in Input" -f flv '+stream_url
-		          }else if(OSName=='Linux' || OSName=='UNIX'){
-					result='ffmpeg -f x11grab -thread_queue_size 100 -r 10 -video_size 1024x768 -i :0 -f alsa -thread_queue_size 500 -ar 44100 -ac 1 -i default -f flv -c:v h264 -c:a aac '+stream_url
-		          }else if(OSName=='Win'){
-		          	result=''
-		          }
-
-		          document.write('請執行後面這段指令，即可開始進行ROV直播: '+result);
+		          
 
 
 		        }, {scope: 'publish_actions'});
