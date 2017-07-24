@@ -41,45 +41,14 @@
 
 
           //facebook live.
-          FB.api("/me/live_videos",
-              function (response) {
-                if (response && !response.error) {
-                  /* handle the result */
-                  alert(response.id);
-                  alert(response.stream_url);
-                  sid=response.id;
-                  stream_url=response.stream_url;
-                }else{
-                  alert('error1');
-                }
-              }
-          );
-
-          FB.api("/me/live_videos", "post",
-              function (response) {
-                if (response && !response.error) {
-                  /* handle the result */
-                  alert(response.id);
-                  alert(response.stream_url);
-                  sid=response.id;
-                  stream_url=response.stream_url;
-                }else{
-                  alert('error2');
-                }
-              }
-          );
-
-
           FB.api("/me/live_videos", "get",
               function (response) {
                 if (response && !response.error) {
                   /* handle the result */
-                  alert(response.id);
-                  alert(response.stream_url);
                   sid=response.id;
                   stream_url=response.stream_url;
                 }else{
-                  alert('error3');
+                  alert('error on get facebook live stream_url.');
                 }
               }
           );
@@ -100,7 +69,7 @@
     </div>
 
 
-    <button onclick="myFacebookLogin()">Login with Facebook</button>
+    <button onclick="myFacebookLogin()">Login with Facebook, And get live url.</button>
   </body>
 
 </html>
